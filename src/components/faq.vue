@@ -1,6 +1,5 @@
 <template>
   <div>
-      // <test :question="'Pourquoi ce métier ?'" :reponse="'Parce que.'" />
       <div>
           <div class="question">
             Pourquoi ce métier ?
@@ -63,7 +62,3 @@
 
   </div>
 </ template>
-
-// <script setup lang="ts">
-// import test from './question.vue'
-// </script>
