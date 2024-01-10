@@ -1,24 +1,31 @@
 <template>
-  <div style="border: 2px solid yellow; padding: 10px; margin-top: 50px">
-    <div style="border: 2px solid white; height:300px">
-
-        <div id="monster" style="padding: 10px; border: 2px solid orange">
-            <div id="monster-bar" style="border: 2px solid green; height:25px; width:150px"> </div>
-            <img style="border: 2px solid red; width: 130px; float: left; margin: 20px; margin-top: 90px" src="/public/img/mimiqui.png" />
+  <div class="rounded-lg border-orange-50">
+    <div class="bg-gradient-to-r from-orange-50 to-orange-400 h-16" />
+    <div class="divide-y-4 divide-gray-950">
+        <!-- Game screen -->
+        <div class="bg-[url('/img/bgpokegame.png')] h-80 grid grid-cols-2">
+            <div id="monster" class="flex flex-row">
+                <div class="mt-36 ml-12 pr-5">
+                    <div id="monster-bar" class="m-2 w-40 h-5 border-slate-950 border-4 rounded-xl"> </div>
+                    <img class="w-32" src="/img/mimiqui.png" />
+                </div>
+            </div>
+            <div id="ennemy" class="flex flex-row-reverse">
+                <div class="mt-20">
+                    <div id="ennemy-bar" class="m-2 w-40 h-5 border-slate-950 border-4 rounded-xl"> </div>
+                    <img class="w-32" src="/img/phyllali.png" />
+                </div>
+            </div>
         </div>
-        <div id="ennemy" style="padding: 10px; border: 2px solid skyblue">
-            <div id="ennemy-bar" style="border: 2px solid red; height:25px; width:150px"> </div>
-            <img style="border: 2px solid green; width: 110px; float: right; margin: 20px" src="/public/img/phyllali.png" />
+        <!-- Game actions -->
+        <div class="h-24 grid grid-cols-3 place-content-center border-top-red-600">
+            <button class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Attaquer </button>
+            <button class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Ouvrir le sac </button>
+            <button class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
         </div>
-
-
-    </div>
-    <div style="border: 2px solid orange; height:100px">
-        <button> Attaquer </button>
-        <button> Ouvrir le sac </button>
-        <button> Fuir </button>
     </div>
     <result :isWin="False"/>
+    <div class="bg-gradient-to-r from-orange-50 to-orange-400 h-16" />
   </div>
 </template>
 

@@ -7,13 +7,11 @@
         <button>Nouveau combat</button>
       </div>
       <div style="padding: 10px;" v-else>
-        <p>Dommage, le monstre vous a battu</p>
-        <p>Vous voulez retenté ?</p>
-        <button>Nouveau combat</button>
+        <p class="text-red-700">Dommage, le monstre vous a battu</p>
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     props: {

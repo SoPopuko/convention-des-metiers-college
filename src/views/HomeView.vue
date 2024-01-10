@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <PokeGame />
-    <FAQ />
-    <VF />
+  <div class="flex text-xl">
+    <FAQ class="w-4/12 mr-4" />
+    <PokeGame class="w-4/12 m-auto bg-white" />
+    <VF class="w-4/12 mr-4" />
   </div>
 </template>
 
