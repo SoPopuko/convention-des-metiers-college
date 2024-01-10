@@ -1,26 +1,14 @@
 <template>
-  <div>
-      <div class="question">
-        {{ questionData }}
-      </ div>
-
-      <div class="reponse">
-        {{ reponseData }}
-      </ div>
+  <div style="padding: 10px">
+    <p v-if="isTrue">VRAI</p>
+    <p v-else>FAUX</p>
   </div>
-</template>;
+</template>
 
-<script lang="js">
+<script>
 export default {
-    data() {
-        return {
-            questionData: question,
-            reponseData: reponse
-        }
+  props: {
+    isTrue: Boolean,
   },
-  props() {
-    question: String,
-    reponse: String
-  }
-}
+};
 </script>

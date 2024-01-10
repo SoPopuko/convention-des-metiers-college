@@ -18,5 +18,22 @@
         <button> Ouvrir le sac </button>
         <button> Fuir </button>
     </div>
+    <result :isWin="False"/>
   </div>
 </template>
+
+<script>
+import result from './screenEnd.vue';
+
+export default {
+  components: {
+    result,
+  },
+  data() {
+    return {
+      False: false,
+      True: true,
+    };
+  },
+};
+</script>
