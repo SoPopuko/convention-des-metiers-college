@@ -2,4 +2,4 @@
   <div class="item">
     hello
   </div>
-</ template>
+</template>
