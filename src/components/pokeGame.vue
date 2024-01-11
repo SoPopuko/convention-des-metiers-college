@@ -6,26 +6,31 @@
         <div class="bg-[url('/img/bgpokegame.png')] h-80 grid grid-cols-2">
             <div id="monster" class="flex flex-row">
                 <div class="mt-36 ml-12 pr-5">
-                    <div id="monster-bar" class="m-2 w-40 h-5 border-slate-950 border-4 rounded-xl"> </div>
+                    <div name="monster-bar" class="flex m-2 w-40 h-5 border-slate-950 border-4 rounded-lg">
+                        <div v-for="index in controlledCharacter.health" :key="index" class="h-3 w-2 bg-green-500" />
+                    </div>
                     <img class="w-32" src="/img/mimiqui.png" />
                 </div>
             </div>
             <div id="ennemy" class="flex flex-row-reverse">
                 <div class="mt-20">
-                    <div id="ennemy-bar" class="m-2 w-40 h-5 border-slate-950 border-4 rounded-xl"> </div>
+                    <div id="ennemy-bar" class="flex m-2 w-40 h-5 border-slate-950 border-4 rounded-lg">
+                        <div v-for="index in enemyCharacter.health" :key="index" class="h-3 w-2 bg-red-500" />
+                    </div>
                     <img class="w-32" src="/img/phyllali.png" />
                 </div>
             </div>
         </div>
         <!-- Game actions -->
-        <div class="h-24 grid grid-cols-3 place-content-center border-top-red-600">
+        <div class="h-24 grid grid-cols-3 place-content-center">
             <button @click="attack" class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Attaquer </button>
-            <button @click="heal" :disabled="healCount >= 2" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Potion ({{ 2 - healCount }})</button>
+            <button @click="heal" :disabled="healCount >= 2" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Se soigner ({{ 2 - healCount }})</button>
             <button @click="handleCharacterDefeated" class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
         </div>
-        <result :victory="victory" v-if="victory !==0"/>
     </div>
     <div class="bg-gradient-to-r from-orange-50 to-orange-400 h-16" />
+
+    <result :victory="victory" v-if="victory !==0"/>
   </div>
 </template>
 
@@ -39,7 +44,7 @@ export default {
   data() {
     return {
       controlledCharacter: { name: 'Joueur', health: 20 },
-      enemyCharacter: { name: 'Ennemi', health: 15 },
+      enemyCharacter: { name: 'Ennemi', health: 20 },
       healCount: 0, // Compteur pour limiter les soins à 2 fois
       victory: 0
     };
