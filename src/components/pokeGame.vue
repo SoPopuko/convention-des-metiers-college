@@ -19,12 +19,12 @@
         </div>
         <!-- Game actions -->
         <div class="h-24 grid grid-cols-3 place-content-center border-top-red-600">
-            <button class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Attaquer </button>
-            <button class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Ouvrir le sac </button>
-            <button class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
+            <button @click="attack" class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Attaquer </button>
+            <button @click="heal" :disabled="healCount >= 2" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Potion ({{ 2 - healCount }})</button>
+            <button @click="handleCharacterDefeated" class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
         </div>
+        <result :victory="victory" v-if="victory !==0"/>
     </div>
-    <result :isWin="False"/>
     <div class="bg-gradient-to-r from-orange-50 to-orange-400 h-16" />
   </div>
 </template>
@@ -38,9 +38,56 @@ export default {
   },
   data() {
     return {
-      False: false,
-      True: true,
+      controlledCharacter: { name: 'Joueur', health: 20 },
+      enemyCharacter: { name: 'Ennemi', health: 15 },
+      healCount: 0, // Compteur pour limiter les soins à 2 fois
+      victory: 0
     };
   },
+  methods: {
+    attack() {
+      // Attaque du joueur sur l'ennemi
+      const playerDamage = Math.floor(Math.random() * 5) + 1;
+      this.enemyCharacter.health -= playerDamage;
+      console.log(`Le joueur attaque l'ennemi et lui inflige ${playerDamage} dégâts.`);
+
+      // Vérifier si l'ennemi est vaincu
+      if (this.enemyCharacter.health <= 0) {
+        this.handleEnemyDefeated();
+      }
+
+      // Attaque de l'ennemi sur le joueur
+      const enemyDamage = Math.floor(Math.random() * 5) + 1;
+      this.controlledCharacter.health -= enemyDamage;
+      console.log(`L'ennemi contre-attaque et inflige ${enemyDamage} dégâts au joueur.`);
+
+      // Vérifier si le joueur est vaincu
+      if (this.controlledCharacter.health <= 0) {
+        this.handleCharacterDefeated();
+      }
+    },
+    heal() {
+      // Vérifier si le joueur peut se soigner
+      if (this.healCount < 2) {
+        // Ajouter la logique de soin ici
+        const healingAmount = Math.floor(Math.random() * 5) + 1;
+        this.controlledCharacter.health += healingAmount;
+
+        // Limiter les soins à 2 fois
+        this.healCount++;
+
+        console.log(`Le joueur se soigne de ${healingAmount} points de vie.`);
+      }
+    },
+    handleCharacterDefeated() {
+      console.log('Le joueur a été vaincu!');
+      this.victory = 2; // Défaite
+    },
+    handleEnemyDefeated() {
+      console.log('L\'ennemi a été vaincu!');
+      this.victory = 1; // Victoire
+    },
+  },
+
 };
 </script>
