@@ -21,9 +21,11 @@
 
   <script>
   export default {
-    victory: {
-      type: Number,
-      required: true,
+    props: {
+      victory: {
+        type: Number,
+        required: true,
+      },
     },
   };
   </script>
