@@ -1,7 +1,7 @@
 <template>
-  <div :class="{'border-red-400 bg-red-600': !isTrue, 'border-green-600 bg-green-800': isTrue }" class="p-2 m-4 h-12 w-18 rounded-lg border-2 text-zinc-950">
-    <p v-if="isTrue">VRAI</p>
-    <p v-else>FAUX</p>
+  <div :class="{'border-red-400 bg-red-600': !isTrue, 'border-green-600 bg-green-800': isTrue }" class="border-2 text-zinc-950">
+    <div v-if="isTrue" class="text-center"> VRAI </div>
+    <div v-else class="text-center"> FAUX </div>
   </div>
 </template>
 

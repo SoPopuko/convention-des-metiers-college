@@ -1,65 +1,63 @@
 <template>
   <div>
-    <div class="inline-block">
-        <div>
-          <h1>Il faut etre bon en math </h1>
+    <div class="inline-block p-1 my-1">
+        <div class="grid grid-cols-6 content-center bg-lime-900">
+          <div class="col-span-5 text-3xl"> Il faut etre bon en maths </div>
           <question :isTrue="False" />
         </div>
-        <div style="border: blue 2px solid;">
-          explication
+        <div class="bg-stone-900">
+          <p>Pas forcément ! Etre bon en maths, c'est un plus, mais tant que tu as de la logique,
+          tu peux aller tranquillement dans cette filière.</p>
+          <b><u>Cours de maths en informatique:</u></b> algorithmique, suites, graphes, matrices
         </div>
     </div>
 
-    <div class="inline-block">
-        <div>
-          <h1>C'est difficile </h1>
+    <div class="inline-block p-1 my-1">
+        <div class="grid grid-cols-6 content-center bg-lime-900">
+          <div class="col-span-5 text-3xl">Cela demande du temps </div>
+          <question :isTrue="True" />
+        </div>
+        <div class="bg-stone-900">
+          <p>Coder est une activité demandant beaucoup de temps: apprendre le langage, faire des exercices pour bien comprendre le fonctionnement...</p>
+          <p>Développeur est un métier ou l'on apprends tout les jours car certaines choses changent très vite et il faut toujours etre au
+          courant des nouveautés.</p>
+        </div>
+    </div>
+
+    <div class="inline-block p-1 my-3">
+        <div class="grid grid-cols-6 content-center bg-lime-900">
+          <div class="col-span-5 text-3xl">Il faut etre patient </div>
+          <question :isTrue="True" />
+        </div>
+        <div class="bg-stone-900">
+         <p> Etre patient est <u>LA</u> qualité du développeur. Pourquoi ? parce que pour résoudre les probèmes,
+          il faut parfois rester dessus pendant beaucoup (trop) de temps !</p>
+        </div>
+    </div>
+
+    <div class="inline-block p-1 my-3">
+        <div class="grid grid-cols-6 content-center bg-lime-900">
+          <div class="col-span-5 text-3xl">Il faut etre bon en anglais </div>
+          <question :isTrue="True" />
+        </div>
+        <div class="bg-stone-900">
+          <p>Presque tout ce qui touche au développement informatique est en anglais: le code (if, string, float, pull...)
+          mais aussi les documentations (dictionnaire de toutes les fonctions disponibles sur un langage/outil), les sites
+          spécialisés, les tutoriels youtubes...</p>
+        </div>
+    </div>
+
+    <div class="inline-block p-1 mt-3">
+        <div class="grid grid-cols-6 content-center bg-lime-900">
+          <div class="col-span-5 text-3xl">Developpeurs = Hackers de films </div>
           <question :isTrue="False" />
         </div>
-        <div style="border: blue 2px solid;">
-          explication
+        <div class="bg-stone-900">
+          <p><b>Absolument personne</b> ne tapote sur son clavier très vite en restant collé sur un écran rempli de vert et de noir.</p>
+          <p>Les développeurs sont surtout des personnes qui tapent normalement sur leur clavier, font des recherches pour
+          résoudre leurs problemes et participent à des réunions.</p>
         </div>
     </div>
-
-    <div class="inline-block">
-        <div>
-          <h1>Cela demande beaucoup de temps </h1>
-          <question :isTrue="True" />
-        </div>
-        <div style="border: blue 2px solid;">
-          explication
-        </div>
-    </div>
-
-    <div class="inline-block">
-        <div>
-          <h1>Il faut etre patient </h1>
-          <question :isTrue="True" />
-        </div>
-        <div style="border: blue 2px solid;">
-          explication
-        </div>
-    </div>
-
-    <div class="inline-block">
-        <div>
-          <h1>Il faut etre bon en anglais </h1>
-          <question :isTrue="True" />
-        </div>
-        <div style="border: blue 2px solid;">
-          explication
-        </div>
-    </div>
-
-    <div class="inline-block">
-        <div>
-          <h1>Les developpeurs ressemblent aux hackers des films </h1>
-          <question :isTrue="False" />
-        </div>
-        <div style="border: blue 2px solid;">
-          explication
-        </div>
-    </div>
-
   </div>
 </template>
 

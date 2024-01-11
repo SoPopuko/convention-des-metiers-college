@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="inline-block">
+      <div class="inline-block p-1 my-3">
           <div class="bg-lime-900 text-3xl">
             Pourquoi ce métier ?
           </ div>
@@ -10,8 +10,7 @@
             <p>Aussi, c'est un métier d'avenir avec toute cette technologie qui nous entoure !</p>
           </ div>
       </div>
-<br/><br/>
-      <div class="inline-block">
+      <div class="inline-block p-1 my-3">
           <div class="bg-lime-900 text-3xl">
             De quelles compétences ai-je besoin ?
           </ div>
@@ -20,8 +19,7 @@
             Essentiellement de logique, de pas mal de créativité et surtout: aimer résoudre des problèmes !
           </ div>
       </div>
-<br/><br/>
-      <div class="inline-block">
+      <div class="inline-block p-1 my-3">
           <div class="bg-lime-900 text-3xl">
             Par quoi commencer ?
           </ div>
@@ -32,8 +30,7 @@
             Par la suite, tu peux apprendre différents langages comme le Python ou le Javascript
           </ div>
       </div>
-<br/><br/>
-      <div class="inline-block">
+      <div class="inline-block p-1 my-3">
           <div class="bg-lime-900 text-3xl">
             Des conseils de sites ou séries à voir ?
           </ div>
