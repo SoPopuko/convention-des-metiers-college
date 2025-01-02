@@ -23,7 +23,7 @@
         </div>
         <!-- Game actions -->
         <div class="h-24 grid grid-cols-3 place-content-center">
-            <button @click="attack" class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Attaquer </button>
+            <button @click="attack" class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Compétences </button>
             <button @click="heal" :disabled="healCount >= 2" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Se soigner ({{ 2 - healCount }})</button>
             <button @click="handleCharacterDefeated" class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
         </div>
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       controlledCharacter: { name: 'Joueur', health: 20 },
-      enemyCharacter: { name: 'Ennemi', health: 20 },
+      enemyCharacter: { name: 'Ennemi', health: 50 },
       healCount: 0, // Compteur pour limiter les soins à 2 fois
       victory: 0
     };
