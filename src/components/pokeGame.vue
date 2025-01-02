@@ -58,6 +58,8 @@ export default {
 
       // Vérifier si l'ennemi est vaincu
       if (this.enemyCharacter.health <= 0) {
+        this.enemyCharacter.health = 0
+
         this.handleEnemyDefeated();
       }
 
@@ -68,6 +70,7 @@ export default {
 
       // Vérifier si le joueur est vaincu
       if (this.controlledCharacter.health <= 0) {
+        this.controlledCharacter.health = 0
         this.handleCharacterDefeated();
       }
     },
