@@ -5,15 +5,30 @@
           Choisi ton pokemon !
         </h3>
         <div class="grid grid-cols-3 gap-4 content-center">
-            <PokemonSelector :imgPokemon="'/img/mimiqui.png'" :namePokemon="'Mimiqui'"  />
-            <PokemonSelector :imgPokemon="'/img/keunotor.png'" :namePokemon="'Keunotor'"  />
-            <PokemonSelector :imgPokemon="'/img/salameche.png'" :namePokemon="'Salameche'"  />
+            <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/mimiqui.png'" :namePokemon="'Mimiqui'"  />
+            <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/keunotor.png'" :namePokemon="'Keunotor'"  />
+            <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/salameche.png'" :namePokemon="'Salameche'"  />
         </div>
-        <button class="w-24 p-3 m-4 rounded-lg border-2 border-green-600 bg-green-800 text-neutral-950"> Go ! </button>
+        <button class="w-24 p-3 m-4 rounded-lg border-2 border-green-600 bg-green-800 text-neutral-950" @click="PokemonSelected()"> Go ! </button>
       </div>
     </div>
   </template>
 
-<script setup lang="ts">
+<script>
 import PokemonSelector from './PokemonSelector.vue'
+
+export default {
+  data() {
+    return {
+      pokemonInfos: []
+    };
+  },
+  methods: {
+    PokemonSelected() {
+      console.log(this.pokemonInfos)
+
+      emit('submit')
+    }
+  }
+};
 </script>

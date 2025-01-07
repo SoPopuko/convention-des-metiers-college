@@ -8,8 +8,8 @@
                   <div v-if="victory === 1" class="text-3xl font-semibold leading-6 text-gray-900" id="modal-title">Bravo !</div>
                   <div v-if="victory === 2" class="text-3xl font-semibold leading-6 text-gray-900" id="modal-title">Pas de chance ! !</div>
                   <div class="mt-4">
-                    <p v-if="victory === 1" class="text-lg text-gray-500">Félicitations, tu as gagné !</p>
-                    <p v-if="victory === 2" class="text-lg text-gray-500">Dommage, tu as perdu !</p>
+                    <p v-if="victory === 1" class="text-lg text-gray-500">Phyllali est K.O !</p>
+                    <p v-if="victory === 2" class="text-lg text-gray-500">Game over</p>
                   </div>
                 </div>
             </div>

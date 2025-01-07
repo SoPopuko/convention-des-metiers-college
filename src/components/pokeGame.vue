@@ -3,7 +3,7 @@
     <div class="bg-gradient-to-r from-orange-50 to-orange-400 h-16" />
     <div class="divide-y-4 divide-gray-950">
         <!-- Game screen -->
-        <div class="bg-[url('/img/bgpokegame.png')] h-80 grid grid-cols-2">
+        <div class="bg-[url('/img/bgpokegame.png')] h-96 grid grid-cols-2">
             <div id="monster" class="flex flex-row">
                 <div class="mt-36 ml-12 pr-5">
                     <div name="monster-bar" class="flex m-2 w-40 h-5 border-slate-950 border-4 rounded-lg">
@@ -19,6 +19,9 @@
                     </div>
                     <img class="w-32" src="/img/phyllali.png" />
                 </div>
+            </div>
+            <div class="bg-white rounded border border-yellow-500 m-1 col-span-2">
+              <div class=" p-2 text-black text-base"> Que dois faire [name] ?</div>
             </div>
         </div>
         <!-- Game actions -->
@@ -43,8 +46,8 @@ export default {
   },
   data() {
     return {
-      controlledCharacter: { name: 'Joueur', health: 20 },
-      enemyCharacter: { name: 'Ennemi', health: 50 },
+      controlledCharacter: { name: 'Joueur', health: 53 },
+      enemyCharacter: { name: 'Ennemi', health: 72 },
       healCount: 0, // Compteur pour limiter les soins à 2 fois
       victory: 0
     };

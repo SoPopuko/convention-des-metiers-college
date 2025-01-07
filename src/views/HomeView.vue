@@ -1,7 +1,7 @@
 <template>
   <div class="flex text-xl relative ">
     <!-- <FAQ class="w-4/12 mr-4" /> -->
-     <StartChoice class="absolute hidden" /> <!-- if go is clicked -> display none-->
+     <StartChoice class="absolute" /> <!-- if go is clicked -> display none-->
      <PokeGame  />
      <!-- <VF class="w-4/12 ml-4" />   class="w-4/12 m-auto bg-white"-->
   </div>
