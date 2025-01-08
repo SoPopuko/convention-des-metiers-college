@@ -9,7 +9,7 @@
                     <div name="monster-bar" class="flex m-2 w-40 h-5 border-slate-950 border-4 rounded-lg">
                         <div v-for="index in controlledCharacter.health" :key="index" class="h-3 w-2 bg-green-500" />
                     </div>
-                    <img class="w-32" src="/img/mimiqui.png" />
+                    <img class="w-32" :src="choosenPokemon[1]" />
                 </div>
             </div>
             <div id="ennemy" class="flex flex-row-reverse">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="bg-white rounded border border-yellow-500 m-1 col-span-2">
-              <div class=" p-2 text-black text-base"> Que dois faire [name] ?</div>
+              <div class=" p-2 text-black text-base"> Que dois faire {{ choosenPokemon[0] }} ?</div>
             </div>
         </div>
         <!-- Game actions -->
@@ -37,12 +37,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import result from './screenEnd.vue';
 
 export default {
   components: {
     result,
+  },
+  props: {
+    choosenPokemon: Array
   },
   data() {
     return {

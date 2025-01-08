@@ -7,27 +7,34 @@
         <div class="grid grid-cols-3 gap-4 content-center">
             <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/mimiqui.png'" :namePokemon="'Mimiqui'"  />
             <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/keunotor.png'" :namePokemon="'Keunotor'"  />
-            <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/salameche.png'" :namePokemon="'Salameche'"  />
+            <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/salameche.png'" :namePokemon="'Salameche'"  />
         </div>
         <button class="w-24 p-3 m-4 rounded-lg border-2 border-green-600 bg-green-800 text-neutral-950" @click="PokemonSelected()"> Go ! </button>
       </div>
     </div>
   </template>
 
-<script>
+<script lang="ts">
 import PokemonSelector from './PokemonSelector.vue'
 
 export default {
+  components: {
+    PokemonSelector,
+  },
   data() {
     return {
-      pokemonInfos: []
+      pokemonInfos: ['Mimiqui', '/img/mimiqui.png']
     };
   },
   methods: {
+    UpdatePokemonInfos(pokemonInfos: string[]){
+      this.pokemonInfos = []
+      this.pokemonInfos = pokemonInfos
+    },
     PokemonSelected() {
       console.log(this.pokemonInfos)
 
-      emit('submit')
+      this.$emit('submitpoke', this.pokemonInfos)
     }
   }
 };
