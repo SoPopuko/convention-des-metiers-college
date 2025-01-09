@@ -5,8 +5,8 @@
           Choisi ton pokemon !
         </h3>
         <div class="grid grid-cols-3 gap-4 content-center">
-            <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/mimiqui.png'" :namePokemon="'Mimiqui'"  />
-            <PokemonSelector v-model="pokemonInfos" :imgPokemon="'/img/keunotor.png'" :namePokemon="'Keunotor'"  />
+            <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/mimiqui.png'" :namePokemon="'Mimiqui'"  />
+            <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/keunotor.png'" :namePokemon="'Keunotor'"  />
             <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/salameche.png'" :namePokemon="'Salameche'"  />
         </div>
         <button class="w-24 p-3 m-4 rounded-lg border-2 border-green-600 bg-green-800 text-neutral-950" @click="PokemonSelected()"> Go ! </button>
@@ -23,13 +23,18 @@ export default {
   },
   data() {
     return {
-      pokemonInfos: ['Mimiqui', '/img/mimiqui.png']
+      pokemonInfos: { name: "Mimiqui", 
+                      typeIcon: '/img/icons/spectre.png',
+                      health: 64, 
+                      img: '/img/mimiqui.png',
+                      colorbar: "bg-green-500" 
+                    },
     };
   },
   methods: {
-    UpdatePokemonInfos(pokemonInfos: string[]){
-      this.pokemonInfos = []
-      this.pokemonInfos = pokemonInfos
+    UpdatePokemonInfos(pokemonInfos: any){
+      this.pokemonInfos.name = pokemonInfos.name
+      this.pokemonInfos.img = pokemonInfos.img
     },
     PokemonSelected() {
       console.log(this.pokemonInfos)

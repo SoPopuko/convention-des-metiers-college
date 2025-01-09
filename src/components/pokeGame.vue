@@ -6,28 +6,23 @@
         <div class="bg-[url('/img/bgpokegame.png')] h-96 grid grid-cols-2">
             <div id="monster" class="flex flex-row">
                 <div class="mt-36 ml-12 pr-5">
-                    <div name="monster-bar" class="flex m-2 w-40 h-5 border-slate-950 border-4 rounded-lg">
-                        <div v-for="index in controlledCharacter.health" :key="index" class="h-3 w-2 bg-green-500" />
-                    </div>
-                    <img class="w-32" :src="choosenPokemon[1]" />
+                  <PokemonStatus :PokemonInfos="controlledCharacter"/>
                 </div>
             </div>
             <div id="ennemy" class="flex flex-row-reverse">
-                <div class="mt-20">
-                    <div id="ennemy-bar" class="flex m-2 w-40 h-5 border-slate-950 border-4 rounded-lg">
-                        <div v-for="index in enemyCharacter.health" :key="index" class="h-3 w-2 bg-red-500" />
-                    </div>
-                    <img class="w-32" src="/img/phyllali.png" />
+                <div class="mt-8">
+                  <PokemonStatus :PokemonInfos="enemyCharacter"/>
                 </div>
             </div>
             <div class="bg-white rounded border border-yellow-500 m-1 col-span-2">
-              <div class=" p-2 text-black text-base"> Que dois faire {{ choosenPokemon[0] }} ?</div>
+              <FightInfos v-if="startToFight == true" :fightInfo="textFightInfo" />
+              <FightInfos v-else :fightInfo="'Que dois faire '+ controlledCharacter.name +' ?'" />
             </div>
         </div>
         <!-- Game actions -->
         <div class="h-24 grid grid-cols-3 place-content-center">
             <button @click="attack" class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Compétences </button>
-            <button @click="heal" :disabled="healCount >= 2" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Se soigner ({{ 2 - healCount }})</button>
+            <button @click="heal" :disabled="healCount >= 3" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Se soigner ({{ 3 - healCount }})</button>
             <button @click="handleCharacterDefeated" class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
         </div>
     </div>
@@ -38,56 +33,84 @@
 </template>
 
 <script lang="ts">
+import FightInfos from './fightInfos.vue';
 import result from './screenEnd.vue';
+import PokemonStatus from './pokemonStatus.vue';
 
 export default {
   components: {
     result,
+    FightInfos,
+    PokemonStatus
   },
   props: {
-    choosenPokemon: Array
+    choosenPokemon: Object,
   },
   data() {
     return {
-      controlledCharacter: { name: 'Joueur', health: 53 },
-      enemyCharacter: { name: 'Ennemi', health: 72 },
-      healCount: 0, // Compteur pour limiter les soins à 2 fois
+      controlledCharacter: { name: this.choosenPokemon.name, 
+                             typeIcon: this.choosenPokemon.typeIcon, 
+                             health: this.choosenPokemon.health, 
+                             img: this.choosenPokemon.img,
+                             colorbar: "bg-green-500" 
+                            },
+      enemyCharacter:       { name: "Phyllali", 
+                              typeIcon: '/img/icons/plante.png', 
+                              health: 73, 
+                              img: '/img/phyllali.png',
+                              colorbar: "bg-green-500" 
+                            },
+      textFightInfo : "",
+      startToFight : false,
+      healCount: 0, // Compteur pour limiter les soins à 3 fois
       victory: 0
     };
   },
   methods: {
+    updateFightInfos(text: string) {
+        this.textFightInfo = text
+    },
     attack() {
+      this.startToFight = true
       // Attaque du joueur sur l'ennemi
-      const playerDamage = Math.floor(Math.random() * 5) + 1;
-      this.enemyCharacter.health -= playerDamage;
-      console.log(`Le joueur attaque l'ennemi et lui inflige ${playerDamage} dégâts.`);
-
+      this.attackAction(this.controlledCharacter, this.enemyCharacter)
       // Vérifier si l'ennemi est vaincu
-      if (this.enemyCharacter.health <= 0) {
-        this.enemyCharacter.health = 0
+      this.checkIfIsStillAlive(this.enemyCharacter.health, true)
 
-        this.handleEnemyDefeated();
-      }
-
+      setTimeout(() => {
       // Attaque de l'ennemi sur le joueur
-      const enemyDamage = Math.floor(Math.random() * 5) + 1;
-      this.controlledCharacter.health -= enemyDamage;
-      console.log(`L'ennemi contre-attaque et inflige ${enemyDamage} dégâts au joueur.`);
-
+        this.attackAction(this.enemyCharacter, this.controlledCharacter)
+      }, 3000)
       // Vérifier si le joueur est vaincu
-      if (this.controlledCharacter.health <= 0) {
-        this.controlledCharacter.health = 0
-        this.handleCharacterDefeated();
+      this.checkIfIsStillAlive(this.controlledCharacter.health, false)
+
+      setTimeout(() => {
+        this.startToFight = false
+      }, 6000)
+    },
+    attackAction(fighter: any, victim: any){
+      const fighterDamage = Math.floor(Math.random() * 5) + 1;
+      victim.health -= fighterDamage;
+      this.updateFightInfos(`${fighter.name} attaque ${victim.name} et lui inflige ${fighterDamage} dégâts.`)
+    },
+    checkIfIsStillAlive(characterHealth: number, isenemy: boolean){
+      if (characterHealth <= 0) {
+        characterHealth = 0
+        if(isenemy == true){
+          this.handleEnemyDefeated();
+        } else {
+          this.handleCharacterDefeated();
+        }
       }
     },
     heal() {
       // Vérifier si le joueur peut se soigner
-      if (this.healCount < 2) {
+      if (this.healCount < 3) {
         // Ajouter la logique de soin ici
         const healingAmount = Math.floor(Math.random() * 5) + 1;
         this.controlledCharacter.health += healingAmount;
 
-        // Limiter les soins à 2 fois
+        // Limiter les soins à 3 fois
         this.healCount++;
 
         console.log(`Le joueur se soigne de ${healingAmount} points de vie.`);

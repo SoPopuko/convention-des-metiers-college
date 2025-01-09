@@ -18,17 +18,16 @@ export default {
   data() {
     return {
       isSelected: false,
-      pokemonInfo: []
+      pokemonInfo: {}
     };
   },
   methods: {
     PokemonIsSelected() {
       if (this.isSelected == true){
-        console.log("selected = true")
         this.isSelected = false
       }
       this.isSelected = true
-      this.pokemonInfo = [this.namePokemon, this.imgPokemon]
+      this.pokemonInfo = { name: this.namePokemon, img: this.imgPokemon }
       
       console.log(this.pokemonInfo)
 
