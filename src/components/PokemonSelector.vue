@@ -1,6 +1,6 @@
 <template>
     <div class="w-32 m-2">
-      <div class="bg-white rounded p-2 cursor-pointer" :class="{'border border-4 border-green-800': isSelected == true, 'border-0': isSelected == false }">
+      <div class="bg-white rounded p-2 cursor-pointer">
         <div class="text-center"  @click="PokemonIsSelected()">
             <img class="m-2" style="height: 6rem; width: auto;" :src=imgPokemon  />
             <span class="text-indigo-900"> {{namePokemon}}</span>
@@ -17,21 +17,14 @@ export default {
   },
   data() {
     return {
-      isSelected: false,
-      pokemonInfo: {}
+      pokemonName: ""
     };
   },
   methods: {
     PokemonIsSelected() {
-      if (this.isSelected == true){
-        this.isSelected = false
-      }
-      this.isSelected = true
-      this.pokemonInfo = { name: this.namePokemon, img: this.imgPokemon }
-      
-      console.log(this.pokemonInfo)
+      this.pokemonName = this.namePokemon!
 
-      this.$emit('updatepoke', this.pokemonInfo)
+      this.$emit('updatepoke', this.pokemonName)
     }
   }
 };

@@ -1,0 +1,16 @@
+[
+    {
+        "name" : "Phyllali",
+        "img" : "/img/phyllali.png",
+        "type": "plante",
+        "typeicon" : "/img/icons/plante.png",
+        "health" : 73,
+        "maxhealth": 73,
+        "colorbar" : "bg-green-500",
+        "faiblesse": "feu",
+        "attacks": [
+            { "atqname": "Tranch'herbe", "type": "plante", "dgtsNorm": 10},
+            { "atqname": "Lame-feuille", "type": "plante", "dgtsNorm": 18}
+        ]
+    }
+]

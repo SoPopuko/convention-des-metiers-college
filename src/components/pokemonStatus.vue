@@ -1,11 +1,11 @@
 <template>
     <div>
-        <HealthBar :pokemonName="PokemonInfos.name" :typeIcon="PokemonInfos.typeIcon" :healthPoints="PokemonInfos.health" :barColor="PokemonInfos.colorbar"/>
-        <img class="w-32" :src="PokemonInfos.img" />
+        <HealthBar :pokemon="PkmInfoStatus"/>
+        <img class="w-32" :src="PkmInfoStatus!.img" />
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import HealthBar from './healthBar.vue';
 
 export default {
@@ -13,7 +13,7 @@ export default {
     HealthBar
   },
   props: {
-    PokemonInfos: Object,
+    PkmInfoStatus: Object,
   }
 };
 </script>

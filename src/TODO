@@ -1,0 +1,7 @@
+- ajouter pop up pour bouton competence pokemon
+- modifier la fonction atq en integrant les competences 
+    => tres efficace = x2 pas tres efficace = x0.5
+- animer les pokemons a chaque atq
+- corriger le bug de soin > pv max OK A TESTER
+- rendre les boutons inutilisables quand les atq se font (hidden ?)
+- faire le mode alexandre (phylalli remplace par pokemon legendaire et le joueur se fait OS) => ajouter un indice pour les autres(ex: niveau secret "comment appelle-t-on un debutant ?") reponse: noob

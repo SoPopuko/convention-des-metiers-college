@@ -5,22 +5,22 @@
         <!-- Game screen -->
         <div class="bg-[url('/img/bgpokegame.png')] h-96 grid grid-cols-2">
             <div id="monster" class="flex flex-row">
-                <div class="mt-36 ml-12 pr-5">
-                  <PokemonStatus :PokemonInfos="controlledCharacter"/>
+                <div class="mt-32 ml-12 pr-5">
+                  <PokemonStatus :PkmInfoStatus="choosenPkm"/>
                 </div>
             </div>
             <div id="ennemy" class="flex flex-row-reverse">
                 <div class="mt-8">
-                  <PokemonStatus :PokemonInfos="enemyCharacter"/>
+                  <PokemonStatus :PkmInfoStatus="ennemyCharacter"/>
                 </div>
             </div>
             <div class="bg-white rounded border border-yellow-500 m-1 col-span-2">
-              <FightInfos v-if="startToFight == true" :fightInfo="textFightInfo" />
-              <FightInfos v-else :fightInfo="'Que dois faire '+ controlledCharacter.name +' ?'" />
+              <FightInfos v-if="startFightAction == true" :fightInfo="textFightInfo" />
+              <FightInfos v-else :fightInfo="'Que dois faire '+ choosenPkm!.name +' ?'" />
             </div>
         </div>
         <!-- Game actions -->
-        <div class="h-24 grid grid-cols-3 place-content-center">
+        <div class="h-24 grid grid-cols-3 place-content-center" :class="{'hidden': startFightAction == true}">
             <button @click="attack" class="p-3 m-4 rounded-lg border-2 border-red-600 bg-red-800 text-neutral-950"> Compétences </button>
             <button @click="heal" :disabled="healCount >= 3" class="p-3 m-4 rounded-lg border-2 border-yellow-500 bg-yellow-700 text-neutral-950"> Se soigner ({{ 3 - healCount }})</button>
             <button @click="handleCharacterDefeated" class="p-3 m-4 rounded-lg border-2 border-orange-500 bg-orange-700 text-neutral-950"> Fuir </button>
@@ -33,6 +33,7 @@
 </template>
 
 <script lang="ts">
+import ennemyData from '../assets/ennemies.json'
 import FightInfos from './fightInfos.vue';
 import result from './screenEnd.vue';
 import PokemonStatus from './pokemonStatus.vue';
@@ -44,24 +45,13 @@ export default {
     PokemonStatus
   },
   props: {
-    choosenPokemon: Object,
+    choosenPkm: Object,
   },
   data() {
     return {
-      controlledCharacter: { name: this.choosenPokemon.name, 
-                             typeIcon: this.choosenPokemon.typeIcon, 
-                             health: this.choosenPokemon.health, 
-                             img: this.choosenPokemon.img,
-                             colorbar: "bg-green-500" 
-                            },
-      enemyCharacter:       { name: "Phyllali", 
-                              typeIcon: '/img/icons/plante.png', 
-                              health: 73, 
-                              img: '/img/phyllali.png',
-                              colorbar: "bg-green-500" 
-                            },
+      ennemyCharacter: ennemyData[0],
       textFightInfo : "",
-      startToFight : false,
+      startFightAction : false,
       healCount: 0, // Compteur pour limiter les soins à 3 fois
       victory: 0
     };
@@ -71,21 +61,21 @@ export default {
         this.textFightInfo = text
     },
     attack() {
-      this.startToFight = true
+      this.startFightAction = true
       // Attaque du joueur sur l'ennemi
-      this.attackAction(this.controlledCharacter, this.enemyCharacter)
+      this.attackAction(this.choosenPkm, this.ennemyCharacter)
       // Vérifier si l'ennemi est vaincu
-      this.checkIfIsStillAlive(this.enemyCharacter.health, true)
+      this.checkIfIsStillAlive(this.ennemyCharacter.health, true)
 
       setTimeout(() => {
       // Attaque de l'ennemi sur le joueur
-        this.attackAction(this.enemyCharacter, this.controlledCharacter)
+        this.attackAction(this.ennemyCharacter, this.choosenPkm)
       }, 3000)
       // Vérifier si le joueur est vaincu
-      this.checkIfIsStillAlive(this.controlledCharacter.health, false)
+      this.checkIfIsStillAlive(this.choosenPkm!.health, false)
 
       setTimeout(() => {
-        this.startToFight = false
+        this.startFightAction = false
       }, 6000)
     },
     attackAction(fighter: any, victim: any){
@@ -104,17 +94,26 @@ export default {
       }
     },
     heal() {
+      this.startFightAction = true
       // Vérifier si le joueur peut se soigner
       if (this.healCount < 3) {
         // Ajouter la logique de soin ici
-        const healingAmount = Math.floor(Math.random() * 5) + 1;
-        this.controlledCharacter.health += healingAmount;
+        const healingAmount = Math.floor(Math.random() * 5) + 12;
+        this.choosenPkm!.health += healingAmount;
+
+        if(this.choosenPkm!.health > this.choosenPkm!.maxhealth){
+          this.choosenPkm!.health = this.choosenPkm!.maxhealth
+        }
 
         // Limiter les soins à 3 fois
         this.healCount++;
-
-        console.log(`Le joueur se soigne de ${healingAmount} points de vie.`);
+        
+        this.updateFightInfos(`${this.choosenPkm!.name} se soigne de ${healingAmount} PV !`)
       }
+      
+      setTimeout(() => {
+        this.startFightAction = false
+      }, 6000)
     },
     handleCharacterDefeated() {
       console.log('Le joueur a été vaincu!');

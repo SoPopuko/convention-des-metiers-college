@@ -1,0 +1,49 @@
+[
+    {
+        "name" : "Croaporal",
+        "img" : "/img/croaporal.png",
+        "type": "eau",
+        "typeicon" : "/img/icons/eau.png",
+        "health" : 58,
+        "maxhealth": 58,
+        "colorbar" : "bg-green-500",
+        "faiblesse": "plante",
+        "attacks": [
+            { "atqname": "Vibraqua", "type": "eau", "dgtsNorm": 16},
+            { "atqname": "Vive-attaque", "type": "normal", "dgtsNorm": 13},
+            { "atqname": "Hydrocanon", "type": "eau", "dgtsNorm": 20}
+        ]
+    },
+    {
+        "name" : "Keunotor",
+        "img" : "/img/keunotor.png",
+        "type": "normal",
+        "typeicon" : "/img/icons/normal.png",
+        "health" : 73,
+        "maxhealth": 73,
+        "colorbar" : "bg-green-500",
+        "faiblesse": "combat",
+        "attacks": [
+            { "atqname": "Charge", "type": "normal", "dgtsNorm": 14},
+            { "atqname": "Machouille", "type": "tenebre", "dgtsNorm": 11},
+            { "atqname": "Belier", "type": "normal", "dgtsNorm": 22}
+        ]
+  
+    },
+    {
+        "name" : "Salameche",
+        "img" : "/img/salameche.png",
+        "type": "feu",
+        "typeicon" : "/img/icons/feu.png",
+        "health" : 41,
+        "maxhealth": 41,
+        "colorbar" : "bg-green-500",
+        "faiblesse": "eau",
+        "attacks": [
+            { "atqname": "Flammeche", "type": "feu", "dgtsNorm": 8},
+            { "atqname": "Tranche", "type": "normal", "dgtsNorm": 6},
+            { "atqname": "Danse flammes", "type": "feu", "dgtsNorm": 17}
+        ]
+  
+    }
+]

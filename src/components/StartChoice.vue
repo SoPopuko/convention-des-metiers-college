@@ -4,18 +4,20 @@
         <h3>
           Choisi ton pokemon !
         </h3>
-        <div class="grid grid-cols-3 gap-4 content-center">
-            <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/mimiqui.png'" :namePokemon="'Mimiqui'"  />
-            <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/keunotor.png'" :namePokemon="'Keunotor'"  />
-            <PokemonSelector @updatepoke="UpdatePokemonInfos" :imgPokemon="'/img/salameche.png'" :namePokemon="'Salameche'"  />
+        <div  class="grid grid-cols-3 gap-4 content-center">
+            <PokemonSelector v-for="pokemon in pokemons" @updatepoke="UpdatePokemonInfos" :imgPokemon="pokemon.img" :namePokemon="pokemon.name"  />
         </div>
-        <button class="w-24 p-3 m-4 rounded-lg border-2 border-green-600 bg-green-800 text-neutral-950" @click="PokemonSelected()"> Go ! </button>
+        <h3 :class="{'hidden': selectedPokemon == null}">
+          Tu as choisi : {{ selectedPokemon }}
+        </h3>
+        <button class="w-24 p-3 m-4 rounded-lg border-2 border-green-600 bg-green-800 text-neutral-950" @click="SendPokemonSelected()"> Go ! </button>
       </div>
     </div>
   </template>
 
 <script lang="ts">
 import PokemonSelector from './PokemonSelector.vue'
+import pokemonData from '../assets/pokemons.json'
 
 export default {
   components: {
@@ -23,22 +25,21 @@ export default {
   },
   data() {
     return {
-      pokemonInfos: { name: "Mimiqui", 
-                      typeIcon: '/img/icons/spectre.png',
-                      health: 64, 
-                      img: '/img/mimiqui.png',
-                      colorbar: "bg-green-500" 
-                    },
+      pokemons: pokemonData,
+      pokemonInfos: [],
+      selectedPokemon: null
     };
   },
   methods: {
-    UpdatePokemonInfos(pokemonInfos: any){
-      this.pokemonInfos.name = pokemonInfos.name
-      this.pokemonInfos.img = pokemonInfos.img
+    UpdatePokemonInfos(pokemonName: string){
+      this.pokemons.forEach((pokemon) => {
+        if(pokemon.name == pokemonName){
+          this.pokemonInfos = pokemon
+          this.selectedPokemon = pokemon.name
+        }
+      })
     },
-    PokemonSelected() {
-      console.log(this.pokemonInfos)
-
+    SendPokemonSelected() {
       this.$emit('submitpoke', this.pokemonInfos)
     }
   }
