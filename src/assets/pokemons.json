@@ -4,14 +4,15 @@
         "img" : "/img/croaporal.png",
         "type": "eau",
         "typeicon" : "/img/icons/eau.png",
-        "health" : 58,
-        "maxhealth": 58,
+        "health" : 73,
+        "maxhealth": 73,
         "colorbar" : "bg-green-500",
         "faiblesse": "plante",
+        "resistance": "feu",
         "attacks": [
-            { "atqname": "Vibraqua", "type": "eau", "dgtsNorm": 16},
-            { "atqname": "Vive-attaque", "type": "normal", "dgtsNorm": 13},
-            { "atqname": "Hydrocanon", "type": "eau", "dgtsNorm": 20}
+            { "name": "Vibraqua", "type": "eau", "dgts": 16},
+            { "name": "Vive-attaque", "type": "normal", "dgts": 13},
+            { "name": "Hydrocanon", "type": "eau", "dgts": 20}
         ]
     },
     {
@@ -23,10 +24,11 @@
         "maxhealth": 73,
         "colorbar" : "bg-green-500",
         "faiblesse": "combat",
+        "resistance": "roche",
         "attacks": [
-            { "atqname": "Charge", "type": "normal", "dgtsNorm": 14},
-            { "atqname": "Machouille", "type": "tenebre", "dgtsNorm": 11},
-            { "atqname": "Belier", "type": "normal", "dgtsNorm": 22}
+            { "name": "Charge", "type": "normal", "dgts": 14},
+            { "name": "Machouille", "type": "tenebre", "dgts": 11},
+            { "name": "Belier", "type": "normal", "dgts": 22}
         ]
   
     },
@@ -35,14 +37,15 @@
         "img" : "/img/salameche.png",
         "type": "feu",
         "typeicon" : "/img/icons/feu.png",
-        "health" : 41,
-        "maxhealth": 41,
+        "health" : 73,
+        "maxhealth": 73,
         "colorbar" : "bg-green-500",
         "faiblesse": "eau",
+        "resistance": "plante",
         "attacks": [
-            { "atqname": "Flammeche", "type": "feu", "dgtsNorm": 8},
-            { "atqname": "Tranche", "type": "normal", "dgtsNorm": 6},
-            { "atqname": "Danse flammes", "type": "feu", "dgtsNorm": 17}
+            { "name": "Flammeche", "type": "feu", "dgts": 8},
+            { "name": "Tranche", "type": "normal", "dgts": 6},
+            { "name": "Danse flammes", "type": "feu", "dgts": 17}
         ]
   
     }

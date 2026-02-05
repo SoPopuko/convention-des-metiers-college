@@ -6,10 +6,12 @@
             <div class="px-4 pb-4 pt-5">
                 <div class="text-center mt-10">
                   <div v-if="victory === 1" class="text-3xl font-semibold leading-6 text-gray-900" id="modal-title">Bravo !</div>
-                  <div v-if="victory === 2" class="text-3xl font-semibold leading-6 text-gray-900" id="modal-title">Pas de chance ! !</div>
+                  <div v-if="victory === 2" class="text-3xl font-semibold leading-6 text-gray-900" id="modal-title">Ton pokemon est K.O ! :'(</div>
+                  <div v-if="victory === 3" class="text-3xl font-semibold leading-6 text-gray-900" id="modal-title">Wouah !</div>
                   <div class="mt-4">
                     <p v-if="victory === 1" class="text-lg text-gray-500">Phyllali est K.O !</p>
                     <p v-if="victory === 2" class="text-lg text-gray-500">Game over</p>
+                    <p v-if="victory === 3" class="text-lg text-gray-500">Tu as battu Shaymin grace au pouvoir de l'amitié !</p>
                   </div>
                 </div>
             </div>

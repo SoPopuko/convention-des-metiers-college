@@ -1,16 +1,16 @@
 <template>
-  <div class="flex text-xl relative ">
-     <!-- <FAQ class="w-4/12 mr-4" /> -->
-     <StartChoice @submitpoke="GetChoosen" class="absolute" :class="{'hidden': startChoiceClose == true}" />
+  <div class="flex text-xl ">
+     <FAQ class="w-4/12 mr-4" />
+     <StartChoice @submitpoke="GetChoosen" :class="{'hidden': startChoiceClose == true}" />
      <PokeGame :choosenPkm="choosenPkmInfos" :class="{'hidden': startChoiceClose == false}" />
-     <!-- <VF class="w-4/12 ml-4" /> -->
+     <VF class="w-4/12 ml-4" />
   </div>
 </template>
 
 
 <script lang="ts">
-  //import FAQ from '../components/faq.vue'
-  //import VF from '../components/faq-vf.vue'
+  import FAQ from '../components/dev-infos/faq.vue'
+  import VF from '../components/dev-infos/faq-vf.vue'
   import PokeGame from '../components/pokeGame.vue'
   import StartChoice from '../components/StartChoice.vue'
 
@@ -18,6 +18,8 @@
   components: {
     StartChoice,
     PokeGame,
+    FAQ,
+    VF
   },
   data() {
     return {

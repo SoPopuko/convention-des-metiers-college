@@ -8,9 +8,25 @@
         "maxhealth": 73,
         "colorbar" : "bg-green-500",
         "faiblesse": "feu",
+        "resistance": "eau",
         "attacks": [
-            { "atqname": "Tranch'herbe", "type": "plante", "dgtsNorm": 10},
-            { "atqname": "Lame-feuille", "type": "plante", "dgtsNorm": 18}
+            { "name": "Tranch'herbe", "type": "plante", "dgts": 10},
+            { "name": "Lame-feuille", "type": "plante", "dgts": 18}
+        ]
+    },
+    {
+        "name" : "Shaymin",
+        "img" : "/img/shaymin.png",
+        "type": "plante",
+        "typeicon" : "/img/icons/plante.png",
+        "health" : 999,
+        "maxhealth": 999,
+        "colorbar" : "bg-green-500",
+        "faiblesse": "feu",
+        "resistance": "eau",
+        "attacks": [
+            { "name": "Trempette", "type": "eau", "dgts": 0},
+            { "name": "Revanche de l'hérisson", "type": "t'as le seum", "dgts": 999}
         ]
     }
 ]
